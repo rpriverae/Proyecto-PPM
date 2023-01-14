@@ -1,15 +1,12 @@
 package com.example.pabloperezmartinez;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import com.example.models.Student;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -44,6 +41,8 @@ public class StudentFormController {
             emailTextField.getText(),
             phoneTextField.getText(), 
             2);
+        
+        student.save();
         
         data.addStudent(student);
         

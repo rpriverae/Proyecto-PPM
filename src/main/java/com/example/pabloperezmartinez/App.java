@@ -8,13 +8,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import com.example.dbhandler.PostgresConnector;
+
 /**
  * JavaFX App
  */
 public class App extends Application {
 
     private static Scene scene;
-    private int idTest=2;
 
     @Override
     public void start(Stage stage) throws IOException {

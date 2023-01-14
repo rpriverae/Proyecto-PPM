@@ -1,6 +1,12 @@
 package com.example.models;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
+
+import com.example.dbhandler.PostgresConnector;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -94,5 +100,24 @@ public class Student extends Person {
      */
     public SimpleIntegerProperty ageProperty() {
         return new SimpleIntegerProperty(this.getAge());
+    }
+
+    public void save() {
+        final String sql = "INSERT INTO student" +
+        " (id, first_name, last_name, email) VALUES " +
+        " (?, ?, ?, ?);";
+        PostgresConnector pgConnector = new PostgresConnector();
+        Connection connection = pgConnector.getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);){
+            preparedStatement.setString(1, this.getId());
+            preparedStatement.setString(2, this.getFirstName());
+            preparedStatement.setString(3, this.getLastName());
+            preparedStatement.setString(4, this.getEmail());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            // print SQL exception information
+            System.out.println(e.getMessage());
+        }
+       
     }
 }
