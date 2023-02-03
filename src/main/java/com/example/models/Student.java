@@ -133,15 +133,18 @@ public class Student extends Person {
         } 
     } else {
 
-        final String sql = "UPDATE student SET first_name = ?, last_name= ?  , email = ? WHERE ID = ? ";
+        final String sql = "UPDATE student SET first_name = ?, last_name = ?, birthday = ? email = ?, phone_number = ?, level = ?  WHERE id = ? ";
         PostgresConnector pgConnector = new PostgresConnector();
         Connection connection = pgConnector.getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
 
             preparedStatement.setString(1, this.getFirstName());
             preparedStatement.setString(2, this.getLastName());
-            preparedStatement.setString(3, this.getEmail());
-            preparedStatement.setString(4, this.getId());
+            preparedStatement.setDate(3, Date.valueOf(getBirthday()));
+            preparedStatement.setString(4, this.getEmail());
+            preparedStatement.setString(5, this.getPhoneNumber());
+            preparedStatement.setInt(6, this.getLevel());
+            preparedStatement.setString(7, this.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             // print SQL exception information
@@ -199,13 +202,13 @@ public class Student extends Person {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Student student = new Student(
-                        rs.getString("id"),
-                        rs.getString("first_name"),
-                        rs.getString("level"),
-                        LocalDate.now(),
-                        rs.getString("email"),
-                        rs.getString("last_name"),
-                        rs.getInt("phone_number"));
+                    rs.getString("id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getDate("birthday").toLocalDate(),
+                    rs.getString("email"),
+                    rs.getString("phone_number"),
+                    rs.getInt("level"));
                 result = Optional.of(student);
             }
 

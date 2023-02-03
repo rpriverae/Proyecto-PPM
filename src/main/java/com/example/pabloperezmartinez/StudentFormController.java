@@ -76,6 +76,7 @@ public class StudentFormController {
         lastNameTextField.setText(student.getLastName());
         birthDatePicker.setValue(student.getBirthday());
         emailTextField.setText(student.getEmail());
-        phoneTextField.setText(student.getEmail());
+        phoneTextField.setText(student.getPhoneNumber());
+        //levelComboBox.setItems(student.getLevel());
     }
 }
