@@ -19,7 +19,7 @@ public class PostgresConnector {
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://" + HOST + ":" + PORT + "/" + DB;
             connection = DriverManager.getConnection(url, USER, PASSWORD);
-            System.out.println("Ooh!!! yeah!!!");
+            System.out.println("Base de Datos Conectada");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

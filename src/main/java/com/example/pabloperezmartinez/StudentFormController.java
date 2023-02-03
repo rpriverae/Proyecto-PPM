@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class StudentFormController {
@@ -23,8 +24,10 @@ public class StudentFormController {
     @FXML TextField phoneTextField;
     @FXML DatePicker birthDatePicker;
     @FXML ComboBox levelComboBox;
-    ObservableList<Integer> levelItems = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6);
+    //ObservableList<Integer> levelItems = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6);
 
+    private String id;
+    ObservableList<Integer> levelItems = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6);
 
     @FXML
     public void initialize() {
@@ -39,8 +42,8 @@ public class StudentFormController {
             lastNameTextField.getText(),
             birthDatePicker.getValue(), 
             emailTextField.getText(),
-            phoneTextField.getText(), 
-            2);
+            phoneTextField.getText(),
+            Integer.parseInt(levelComboBox.getValue().toString()));
         
         student.save();
         
@@ -55,4 +58,24 @@ public class StudentFormController {
         App.setRoot("studentList");
     }
     
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void closeWindows() {
+    }
+
+
+    public void init(Student student, Stage stage, StudentListController studentListController) {
+        idTextField.setText(student.getId());
+        firstNameTextField.setText(student.getFirstName());
+        lastNameTextField.setText(student.getLastName());
+        birthDatePicker.setValue(student.getBirthday());
+        emailTextField.setText(student.getEmail());
+        phoneTextField.setText(student.getEmail());
+    }
 }

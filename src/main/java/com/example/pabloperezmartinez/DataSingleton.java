@@ -10,9 +10,9 @@ import javafx.collections.ObservableList;
 public class DataSingleton {
     private static final DataSingleton instance= new DataSingleton();
     private ObservableList<Student> studentList = FXCollections.observableArrayList(
-        new Student("123522252", "Juan", "Avilés", LocalDate.of(1992, 1, 31) , "juan@puce.edu.ec", "3512313", 2),
-        new Student("123522253", "Mario", "Contero", LocalDate.of(1992, 2, 22) , "mario@puce.edu.ec", "3512313", 2),
-        new Student("123522254", "Alba", "Pelaez", LocalDate.of(1992, 3, 2) , "alba@puce.edu.ec", "3512313", 2)
+        new Student("1718131772", "Pablo", "Villamil", LocalDate.of(1995, 6, 23) , "pvillamil@puce.edu.ec", "3331585", 2),
+        new Student("1706086699", "Juan", "Isaza", LocalDate.of(1994, 8, 9) , "jisaza@puce.edu.ec", "3221868", 4),
+        new Student("1703525855", "Martin", "Vargas", LocalDate.of(1997, 7, 25) , "mvargas@puce.edu.ec", "2350696", 3)
     );
 
     private DataSingleton(){}
